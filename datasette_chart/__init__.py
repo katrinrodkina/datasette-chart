@@ -1,5 +1,6 @@
 from datasette import hookimpl
 import random
+from datasette.utils.asgi import Response
 
 
 @hookimpl
@@ -10,3 +11,13 @@ def prepare_jinja2_environment(env):
 @hookimpl
 def prepare_connection(conn):
     conn.create_function('random_integer', 2, random.randint)
+
+
+@hookimpl
+def extra_js_urls():
+    return [
+        "../static/bar.js"
+    ]
+
+
+
